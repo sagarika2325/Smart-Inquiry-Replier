@@ -116,22 +116,6 @@ Go to: `http://127.0.0.1:8000/`
 
 **🎉 Congratulations! Your AI Email Assistant is now running!**
 
----
-
-### 🔄 Daily Usage (After First Setup):
-
-Once you've done the setup above, here's how to start it every day:
-
-```bash
-# Navigate to project → Activate environment → Start server
-cd C:\Users\sagar\OneDrive\Desktop\AI-EmailAssistant
-venv\Scripts\activate
-cd email_auto_reply_project
-python manage.py runserver
-```
-
-**💡 Pro Tip:** Keep the terminal open while using the app. Press `Ctrl+C` to stop the server when you're done!
-
 ## 🎮 How to Use It? (Super Easy!)
 
 ### For Regular Users:
