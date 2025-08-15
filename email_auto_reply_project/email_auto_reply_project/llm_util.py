@@ -151,9 +151,41 @@ def generate_ai_reply(sender_name: str, receiver_name: str, inquiry_questions: l
             elif "discount" in question_lower or "bulk" in question_lower:
                 responses.append("Regarding bulk discounts: Yes, we offer significant discounts for bulk purchases and enterprise clients. Discounts start at 15% for 10+ licenses and can go up to 30% for larger organizations. I'd be happy to create a custom quote for you.")
             
+            elif "partnership" in question_lower or "partner" in question_lower:
+                responses.append("Regarding partnership opportunities: Thank you for your interest in partnering with us! We're always looking for strategic partnerships. To become a certified partner, we typically require: 1) A proven track record in your industry, 2) Commitment to our training program, and 3) Meeting minimum revenue requirements. Our partner discount structure includes up to 25% commission on referrals and special pricing tiers.")
+            
+            elif "meeting" in question_lower or "discuss" in question_lower or "collaboration" in question_lower:
+                responses.append("About scheduling a meeting: I'd be happy to arrange a discussion! I'm available next week on Tuesday, Wednesday, or Friday between 10 AM - 4 PM EST. Please let me know what time works best for you, and I'll send a calendar invitation with the meeting details.")
+            
+            elif "requirement" in question_lower or "certified" in question_lower:
+                responses.append("Regarding certification requirements: To become a certified partner, you'll need to: 1) Complete our partner training program (typically 2-3 weeks), 2) Demonstrate technical proficiency with our platform, 3) Maintain a minimum customer satisfaction rating of 4.5/5, and 4) Commit to at least $50K in annual business volume.")
+            
             else:
-                # Generic helpful response for unrecognized questions
-                responses.append(f"Thank you for your question: '{question}' - I've noted your inquiry and will make sure to provide you with comprehensive information. Our team will research this and get back to you with detailed answers.")
+                # Use the actual Gemini AI to generate a contextual response
+                try:
+                    client = genai.Client(api_key=GEMINI_API_KEY)
+                    ai_prompt = f"""
+                    You are a professional customer service representative. Someone asked: "{question}"
+                    
+                    Original email context: "{original_email}"
+                    
+                    Please provide a helpful, professional response that directly addresses their question. 
+                    Keep it concise (2-3 sentences) and actionable. Don't say "thank you for your question" - just answer it directly.
+                    """
+                    
+                    ai_response = client.models.generate_content(
+                        model="gemini-2.0-flash",
+                        contents=[ai_prompt]
+                    )
+                    
+                    if ai_response.text and ai_response.text.strip():
+                        responses.append(ai_response.text.strip())
+                    else:
+                        responses.append(f"I understand you're asking about: '{question}'. Let me connect you with the right team member who can provide detailed information on this topic. You can expect a response within 24 hours.")
+                        
+                except Exception as e:
+                    print(f"AI generation failed: {e}")
+                    responses.append(f"Regarding your inquiry about '{question}': I want to make sure I give you accurate information. Let me research this properly and get back to you with a comprehensive answer within 24 hours.")
         
         ai_response = "\n\n".join(responses)
     
