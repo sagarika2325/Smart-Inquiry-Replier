@@ -74,7 +74,7 @@ Best regards, Sarah"
 - 🌐 Internet connection
 - ☕ Maybe some coffee! 
 
-### Step-by-Step Setup:
+### 🆕 First-Time Setup:
 
 #### 1️⃣ Get the Code
 ```bash
@@ -116,31 +116,18 @@ Go to: `http://127.0.0.1:8000/`
 
 **🎉 Congratulations! Your AI Email Assistant is now running!**
 
-## 🏃‍♂️ How to Run It Again? (After First Setup)
+---
 
-Once you've set it up, here's how to run it every time:
+### 🔄 Daily Usage (After First Setup):
 
-#### Quick Start Commands:
+Once you've done the setup above, here's how to start it every day:
+
 ```bash
-# 1. Navigate to your project folder
+# Navigate to project → Activate environment → Start server
 cd C:\Users\sagar\OneDrive\Desktop\AI-EmailAssistant
-
-# 2. Activate virtual environment
-venv\Scripts\activate    # On Windows
-# source venv/bin/activate  # On Mac/Linux
-
-# 3. Go to Django project folder
+venv\Scripts\activate
 cd email_auto_reply_project
-
-# 4. Start the server
 python manage.py runserver
-
-# 5. Open browser and go to: http://127.0.0.1:8000/
-```
-
-#### Or One-Line Command (Windows):
-```bash
-cd C:\Users\sagar\OneDrive\Desktop\AI-EmailAssistant && venv\Scripts\activate && cd email_auto_reply_project && python manage.py runserver
 ```
 
 **💡 Pro Tip:** Keep the terminal open while using the app. Press `Ctrl+C` to stop the server when you're done!
