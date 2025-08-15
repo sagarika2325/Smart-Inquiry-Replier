@@ -1,0 +1,12 @@
+.idea/
+venv/
+# Environment variables
+.env
+*.env
+
+# API Keys and secrets
+**/settings_local.py
+
+# Database
+db.sqlite3
+*.sqlite3
